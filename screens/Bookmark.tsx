@@ -49,7 +49,7 @@ const BookmarksScreen = () => {
       <FlatList
         data={bookmarkedJobs}
         keyExtractor={(item, index) =>
-          item.id ? item.id.toString() : index.toString()
+          item.id ? `job-${item.id}` : `index-${index}`
         }
         renderItem={({ item }) => (
           <View>

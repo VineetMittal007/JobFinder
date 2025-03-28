@@ -103,23 +103,16 @@ const AppNavigator = () => {
 
 const styles = StyleSheet.create({
   tabBarBase: {
-    position: "absolute",
-    bottom: 4,
-    left: 10,
-    right: 10,
-    height: 36,
-    borderRadius: 10,
+    position: "sticky",
+    bottom: 10,
+    height: 40,
+    borderRadius: 15,
     shadowColor: "#000",
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 5 },
-    elevation: 5,
   },
-  tabBarLight: {
-    backgroundColor: "white",
-  },
-  tabBarDark: {
-    backgroundColor: "white",
-  },
+  tabBarLight: {},
+  tabBarDark: {},
 });
 
 export default AppNavigator;
