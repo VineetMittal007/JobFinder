@@ -98,7 +98,9 @@ const JobsScreen = () => {
 
       <FlatList
         data={data?.pages?.flatMap((page) => page.results) || []}
-        keyExtractor={(item) => String(item.id)}
+        keyExtractor={(item, index) =>
+          item.id ? `job-${item.id}` : `index-${index}`
+        }
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.card}
@@ -119,7 +121,7 @@ const JobsScreen = () => {
             <Text style={styles.phone}>📞 {item.whatsapp_no}</Text>
           </TouchableOpacity>
         )}
-        onEndReached={handleEndReached} // Use the handleEndReached function
+        onEndReached={handleEndReached}
         onEndReachedThreshold={0.2}
         ListFooterComponent={
           isFetchingNextPage ? (
