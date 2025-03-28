@@ -11,9 +11,9 @@ import JobDetailsScreen from "../screens/JobsDetails";
 
 // Define the param list for stack navigation
 export type RootStackParamList = {
-  Jobs: undefined;
+  JobsScreen: undefined;
   JobDetails: { job: any }; // Ensure JobDetails expects job as a parameter
-  Bookmarks: undefined;
+  BookmarksScreen: undefined;
 };
 
 // Create navigators with types
@@ -31,7 +31,7 @@ const JobsStack = () => (
     }}
   >
     <Stack.Screen
-      name="Jobs"
+      name="JobsScreen"
       component={JobsScreen}
       options={{ title: "Jobs" }}
     />
@@ -54,7 +54,7 @@ const BookmarksStack = () => (
     }}
   >
     <Stack.Screen
-      name="Bookmarks"
+      name="BookmarksScreen"
       component={BookmarksScreen}
       options={{ title: "Bookmarks" }}
     />
@@ -78,7 +78,7 @@ const AppNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Jobs"
+        name="JobsStack"
         component={JobsStack}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -88,7 +88,7 @@ const AppNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Bookmarks"
+        name="BookmarksStack"
         component={BookmarksStack} // Updated to use BookmarksStack
         options={{
           tabBarIcon: ({ color, size }) => (

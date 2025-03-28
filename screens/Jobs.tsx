@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   FlatList,
@@ -14,45 +14,46 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/Navigator";
 import { useTheme } from "../Theme/ThemeContext";
 import { FetchedJob } from "./fetchedjobs";
+import { DisplayJob } from "./DisplayJob";
 
-// Define Job type
-type Job = {
-  id: number;
-  title: string;
-  location: string;
-  salary: number;
-  phone: string;
-};
+const mapFetchedJobToDisplayJob = (fetchedJob: FetchedJob): DisplayJob => ({
+  id: fetchedJob.id,
+  title: fetchedJob.title,
+  companyName: fetchedJob.company_name,
+  place: fetchedJob.primary_details?.Place || "Unknown",
+  salary: fetchedJob.primary_details?.Salary || "Negotiable",
+  jobType: fetchedJob.primary_details?.Job_Type || "Unknown",
+  experience: fetchedJob.primary_details?.Experience || "Unknown",
+  qualification: fetchedJob.primary_details?.Qualification || "Unknown",
+  jobTags: fetchedJob.job_tags,
+  buttonText: fetchedJob.button_text,
+  customLink: fetchedJob.custom_link,
+  updatedOn: new Date(fetchedJob.updated_on).toLocaleDateString(),
+  creatives: fetchedJob.creatives.map((creative) => ({
+    thumb_url: creative.thumb_url,
+  })),
+  content:
+    fetchedJob.contentV3?.V3.map((contentItem) => ({
+      field_key: contentItem.field_key,
+      field_name: contentItem.field_name,
+      field_value: contentItem.field_value,
+    })) || [],
+  jobRole: fetchedJob.job_role,
+  jobCategory: fetchedJob.job_category,
+  feesText: fetchedJob.fees_text,
+  whatsappLink: fetchedJob.contact_preference?.whatsapp_link,
+});
 
-// API Response type
-type JobsApiResponse = {
-  results: Job[];
-};
-
-// Map API response (FetchedJob) to Job
-const mapFetchedJobToJob = (fetchedJob: FetchedJob): Job => {
-  return {
-    id: fetchedJob.id, // Ensure FetchedJob has an 'id' field
-    title: fetchedJob.title,
-    location: fetchedJob.job_location_slug || "Unknown",
-    salary: fetchedJob.salary_max ?? 0, // Ensure "Salary" exists
-    phone: fetchedJob.whatsapp_no || "N/A",
-  };
-};
-
-// Fetch jobs from API
 const fetchJobs = async ({
   pageParam = 1,
-}): Promise<{ results: Job[]; nextPage?: number }> => {
+}): Promise<{ results: FetchedJob[]; nextPage?: number }> => {
   try {
     const { data } = await axios.get<{ results: FetchedJob[] }>(
       `https://testapi.getlokalapp.com/common/jobs?page=${pageParam}`
     );
 
-    const mappedJobs: Job[] = data.results.map(mapFetchedJobToJob);
-
     return {
-      results: mappedJobs,
+      results: data.results,
       nextPage: data.results.length > 0 ? pageParam + 1 : undefined,
     };
   } catch (error) {
@@ -64,12 +65,22 @@ const fetchJobs = async ({
 const JobsScreen = () => {
   const { theme } = useTheme();
   const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList, "Jobs">>();
+    useNavigation<
+      NativeStackNavigationProp<RootStackParamList, "JobsScreen">
+    >();
+  const [isLoadingMore, setIsLoadingMore] = useState(false); // Add loading flag
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
     useInfiniteQuery("jobs", ({ pageParam = 1 }) => fetchJobs({ pageParam }), {
       getNextPageParam: (lastPage) => lastPage?.nextPage ?? undefined,
     });
+
+  const handleEndReached = () => {
+    if (hasNextPage && !isLoadingMore) {
+      setIsLoadingMore(true);
+      fetchNextPage().then(() => setIsLoadingMore(false));
+    }
+  };
 
   return (
     <View
@@ -80,28 +91,35 @@ const JobsScreen = () => {
     >
       {status === "loading" && (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#ffdd57" />
+          <ActivityIndicator size="large" color="#C2C6C9" />
           <Text style={styles.loadingText}>Fetching jobs...</Text>
         </View>
       )}
+
       <FlatList
         data={data?.pages?.flatMap((page) => page.results) || []}
         keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.card}
-            onPress={() => navigation.navigate("JobDetails", { job: item })}
+            onPress={() =>
+              navigation.navigate("JobDetails", {
+                job: mapFetchedJobToDisplayJob(item),
+              })
+            }
           >
             <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.location}>{item.location}</Text>
+            <Text style={styles.location}>{item.company_name}</Text>
             <Text style={styles.salary}>
-              Salary: ₹
-              {item.salary ? item.salary.toLocaleString() : "Not Disclosed"}
+              Salary: ₹{" "}
+              {item.salary_max
+                ? item.salary_max.toLocaleString()
+                : "Not Disclosed"}
             </Text>
-            <Text style={styles.phone}>📞 {item.phone}</Text>
+            <Text style={styles.phone}>📞 {item.whatsapp_no}</Text>
           </TouchableOpacity>
         )}
-        onEndReached={() => hasNextPage && fetchNextPage()}
+        onEndReached={handleEndReached} // Use the handleEndReached function
         onEndReachedThreshold={0.2}
         ListFooterComponent={
           isFetchingNextPage ? (
@@ -117,7 +135,6 @@ const JobsScreen = () => {
   );
 };
 
-// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -128,7 +145,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   darkBackground: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#E8E8E8",
   },
   loadingContainer: {
     flex: 1,
