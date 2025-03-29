@@ -11,7 +11,7 @@ export type FetchedJob = {
     Qualification: string;
   };
   fee_details: {
-    V3: any[]; // Or define a more specific type if you know the structure of V3
+    V3: any[];
   };
   job_tags: {
     value: string;
@@ -55,13 +55,13 @@ export type FetchedJob = {
     thumb_url: string;
     creative_type: number;
   }[];
-  videos: any[]; // Or define a more specific type if you know the structure of videos
+  videos: any[];
   locations: {
     id: number;
     locale: string;
     state: number;
   }[];
-  tags: any[]; // Or define a more specific type if you know the structure of tags
+  tags: any[];
   contentV3: {
     V3: {
       field_key: string;
@@ -79,7 +79,7 @@ export type FetchedJob = {
   num_applications: number;
   enable_lead_collection: boolean;
   is_job_seeker_profile_mandatory: boolean;
-  translated_content: any; // Or define a more specific type if you know the structure of translated_content
+  translated_content: any;
   job_location_slug: string;
   fees_text: string;
   question_bank_id: number | null;

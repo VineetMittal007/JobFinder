@@ -1,50 +1,108 @@
-# Welcome to your Expo app 👋
+# 🚀 JobFinder (React Native)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📌 Overview
+JobFinder is a cutting-edge mobile application built with **React Native**, designed to help users explore, save, and manage job opportunities effortlessly. With a seamless and intuitive user experience, JobFinder enables users to browse job listings, view detailed job descriptions, and bookmark their favorite job postings for later access.
 
-## Get started
+## ✨ Features
+- 🔍 **Job Listings:** Browse a comprehensive list of job opportunities with essential details.
+- 📄 **Job Details:** Access in-depth job descriptions, including **company name, location, salary range, requirements, and more**.
+- 📌 **Bookmark Jobs:** Save and manage job listings in a dedicated bookmarks section for future reference.
+- 🎯 **Smart Navigation:** Navigate effortlessly between screens with **React Navigation’s Stack and Tab Navigators**.
+- 📱 **Responsive UI:** Optimized for **both iOS and Android** devices.
 
-1. Install dependencies
+## 🖼️ Screenshots
+Add screenshots of:
+- 📌 Job Listings Screen
+![App Screenshot](./assets/images/Jobs%20Loading%20Page.png)
+![App Screenshot](./assets/images//Jobs%20Page.png)
+- 📄 Job Details Screen
+![App Screenshot](./assets/images/Job%20Details%20Page.png)
+- 📁 Bookmarks Screen
+![App Screenshot](./assets/images/Bookmarks%20Page.png)
 
-   ```bash
-   npm install
-   ```
 
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+## 🛠️ Installation Guide
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/yourusername/jobfinder.git
+```
+### 2️⃣ Navigate to the Project Directory
+```sh
+cd jobfinder
+```
+### 3️⃣ Install Dependencies
+```sh
+npm install
+# or
+yarn install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🚀 Running the App
+### Start the Development Server
+```sh
+npm start
+# or
+yarn start
+```
+### Run the App on an Emulator or Physical Device
+#### 📱 For iOS:
+```sh
+npm run ios
+# or
+yarn ios
+```
+#### 🤖 For Android:
+```sh
+npm run android
+# or
+yarn android
+```
 
-## Learn more
+## 📂 Project Structure
+```
+JobFinder/
+│
+│──├ component/    # Reusable UI components (e.g., JobCard)
+│──├ screens/      # Screens (JobsScreen, JobDetailsScreen, BookmarksScreen)
+│──├ navigation/   # Navigation setup using React Navigation
+│──├ Theme/        # dark and light theme
+│──├ assets/       # Images, icons, and other static assets
+│──├ app/       
+│── package.json
+│── .env.example
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## 📦 Dependencies
+- 🏗 **React Native:** Build native apps using React.
+- 🔄 **React Navigation:** Manage seamless app navigation.
+- 🗄 **AsyncStorage:** Persistent local storage solution.
+- 🎨 **React Native Vector Icons:** Extensive icon library for UI enhancements.
+- 🌙 **Styled Components:** Flexible styling for theme management.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 💡 Contributing
+We welcome contributions! Follow these steps to get started:
+1. **Fork** the repository.
+2. **Create a new branch** for your feature:
+   ```sh
+   git checkout -b feature/your-feature-name
+   ```
+3. **Commit your changes**:
+   ```sh
+   git commit -m "Add your commit message here"
+   ```
+4. **Push to your branch**:
+   ```sh
+   git push origin feature/your-feature-name
+   ```
+5. **Submit a pull request** 🚀
 
-## Join the community
+## 📝 License
+This project is licensed under the **MIT License**. See the `LICENSE` file for more details.
 
-Join our community of developers creating universal apps.
+## 🙌 Acknowledgments
+- ❤️ A big thank you to the **React Native** and **open-source** community!
+- 📖 Special thanks to the **React Navigation** team for seamless navigation solutions.
+- 🏗 Inspired by various **job search platforms** to provide the best user experience.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+💼 *Happy job hunting with JobFinder!* 🚀

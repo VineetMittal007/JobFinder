@@ -14,7 +14,7 @@ export type DisplayJob = {
   }[];
   buttonText: string;
   customLink: string;
-  updatedOn: string; // Formatted date
+  updatedOn: string;
   creatives: {
     thumb_url: string;
   }[];
@@ -26,5 +26,5 @@ export type DisplayJob = {
   jobRole: string;
   jobCategory: string;
   feesText: string;
-  whatsappLink?: string; // Optional, for direct WhatsApp contact
+  whatsappLink?: string;
 };

@@ -1,3 +1,4 @@
+// NOTE ENTIRE THEME FEATURE IS NOT USED ANYWHERE IN THE PROJECT 
 import React, { createContext, useContext, useState } from "react";
 import { Appearance } from "react-native";
 

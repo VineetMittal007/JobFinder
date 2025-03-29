@@ -1,8 +1,9 @@
+// NO USE OF THIS FILE
 export const lightTheme = {
   background: "#42b883",
   text: "#42b883",
-  primary: "#42b883", 
-  secondary: "#42b883", 
+  primary: "#42b883",
+  secondary: "#42b883",
 };
 
 export const darkTheme = {

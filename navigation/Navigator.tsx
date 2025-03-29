@@ -3,20 +3,18 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
-import { useTheme } from "../Theme/ThemeContext"; // Import theme context
+import { useTheme } from "../Theme/ThemeContext";
 
 import JobsScreen from "../screens/Jobs";
 import BookmarksScreen from "../screens/Bookmark";
 import JobDetailsScreen from "../screens/JobsDetails";
 
-// Define the param list for stack navigation
 export type RootStackParamList = {
   JobsScreen: undefined;
-  JobDetails: { job: any }; // Ensure JobDetails expects job as a parameter
+  JobDetails: { job: any };
   BookmarksScreen: undefined;
 };
 
-// Create navigators with types
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -27,7 +25,7 @@ const JobsStack = () => (
       headerTintColor: "white",
       headerTitleAlign: "center",
       headerTitleStyle: { fontSize: 18, fontWeight: "bold" },
-      animation: "slide_from_right", // Smooth transition
+      animation: "slide_from_right",
     }}
   >
     <Stack.Screen
@@ -50,7 +48,7 @@ const BookmarksStack = () => (
       headerTintColor: "white",
       headerTitleAlign: "center",
       headerTitleStyle: { fontSize: 18, fontWeight: "bold" },
-      animation: "slide_from_right", // Smooth transition
+      animation: "slide_from_right",
     }}
   >
     <Stack.Screen
@@ -68,6 +66,7 @@ const AppNavigator = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarLabelPosition: "beside-icon",
         tabBarStyle: [
           styles.tabBarBase,
           theme === "dark" ? styles.tabBarDark : styles.tabBarLight,
@@ -89,7 +88,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="BookmarksStack"
-        component={BookmarksStack} // Updated to use BookmarksStack
+        component={BookmarksStack}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="bookmark" size={size} color={color} />
