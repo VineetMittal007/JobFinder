@@ -4,7 +4,7 @@
 
 JobFinder is a cutting-edge mobile application built with **React Native**, designed to help users explore, save, and manage job opportunities effortlessly. With a seamless and intuitive user experience, JobFinder enables users to browse job listings, view detailed job descriptions, and bookmark their favorite job postings for later access.
 
-**Here is the youtube link** [![Watch the video](https://img.youtube.com/vi/8V5_07zLvDU/0.jpg)](https://www.youtube.com/watch?v=8V5_07zLvDU)
+**Here is the Demo on YouTube** [![YouTube Icon](https://upload.wikimedia.org/wikipedia/commons/4/4f/Youtube_logo_icon.png)](https://www.youtube.com/watch?v=8V5_07zLvDU)
 
 ## ✨ Features
 
@@ -16,15 +16,21 @@ JobFinder is a cutting-edge mobile application built with **React Native**, desi
 
 ## 🖼️ Screenshots
 
-Add screenshots of:
+### 📌 Job Loading Screen
 
-- 📌 Job Listings Screen
-  ![App Screenshot](./assets/images/Jobs%20Loading%20Page.png)
-  ![App Screenshot](./assets/images//Jobs%20Page.png)
-- 📄 Job Details Screen
-  ![App Screenshot](./assets/images/Job%20Details%20Page.png)
-- 📁 Bookmarks Screen
-  ![App Screenshot](./assets/images/Bookmarks%20Page.png)
+![App Screenshot](./assets/images/Jobs%20Loading%20Page.png)
+
+### 🗂️ Job Listing Screen
+
+![App Screenshot](./assets/images/Jobs%20Page.png)
+
+### 📄 Job Details Screen
+
+![App Screenshot](./assets/images/Job%20Details%20Page.png)
+
+### 📁 Bookmarks Screen
+
+![App Screenshot](./assets/images/Bookmarks%20Page.png)
 
 ## 🛠️ Installation Guide
 
